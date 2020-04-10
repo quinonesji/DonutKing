@@ -16,25 +16,25 @@ class Config
      * Database host
      * @var string
      */
-    const DB_HOST = 'localhost';//us-cdbr-iron-east-01.cleardb.net
+    const DB_HOST = 'us-cdbr-iron-east-01.cleardb.net';//us-cdbr-iron-east-01.cleardb.net-prod and localhost-dev
 
     /**
      * Database name
      * @var string
      */
-    const DB_NAME = 'DonutKing';//heroku_1369e01860fbd29
+    const DB_NAME = 'heroku_1369e01860fbd29';//heroku_1369e01860fbd29
 
     /**
      * Database user
      * @var string
      */
-    const DB_USER = 'app_king';//b9624e29a9c8c6
+    const DB_USER = 'b9624e29a9c8c6';//b9624e29a9c8c6 - prod and app_king-dev
 
     /**
      * Database password
      * @var string
      */
-    const DB_PASSWORD = 'J456Kikd#k8@!';//4fb6127e
+    const DB_PASSWORD = '4fb6127e';//4fb6127e-prod and J456Kikd#k8@!-dev
 
     /**
      * Show or hide error messages on screen
