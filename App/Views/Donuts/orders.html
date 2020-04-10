@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                Price
+            </td>
+            <td>
+                Quantity
+            </td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Jose Quinones</td>
+            <td>$5.99</td>
+            <td>1</td>
+            <td><a href="#" class="btn btn-primary">View</a></td>
+        </tr>
+        <tr>
+            <td>Victor Quinones</td>
+            <td>$5.99</td>
+            <td>2</td>
+            <td><a href="#" class="btn btn-primary">View</a></td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

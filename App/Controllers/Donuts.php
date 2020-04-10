@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
+use \App\Models\Donut;
 
 class Donuts extends \Core\Controller
 {
@@ -13,77 +14,27 @@ class Donuts extends \Core\Controller
         //     htmlspecialchars(print_r($_GET, true)) . '</pre></p>';
     }
 
-    public function addAction()
+    public function allAction()
     {
-        //make sure the value of checkbox is either true(1) or false(0)
-        // if(!isset($_POST['isDonutOfWeek'])) {
-        //     $_POST['isDonutOfWeek'] = "0";
-        // }else{
-        //   $_POST['isDonutOfWeek'] = "1";
+        $donuts = Donut::getAll();
+        // foreach($donuts as $key => $value) {
+        //     if($key=="image"){
+        //         echo "data:image/jpeg;base64,'.base64_encode($value).'";
+        //         $donuts[$key] = "<img src='/images/AppleCideDoughnuts.jpg' alt='Apple cider donut' class='img-thumbnail'> ";
+        //         $value = "<img src='/images/AppleCideDoughnuts.jpg' alt='Apple cider donut' class='img-thumbnail'> ";
+        //         // echo $value;
+        //         // $value = "<img src=\"data:image\/jpeg;base64,\'.base64_encode(\$donut[\'name\']).\'\" height=\"200\" width=\"200\" class=\"img-thumnail\" /> ";
+        //     }
         // }
-
-        /*
-        * Headers START
-        */
-        //Save $keys into $headers array to save to first row of the file.
-        // $headers = [];
-        // $counter = 0;
-        // foreach($_POST as $key => $value) {
-        //     $headers[$counter] = $key;
-        //     $counter = $counter + 1;
-        // }
-        // $overWriteHeadersPresentInFile = fopen(dirname(__DIR__) . '/Models/donuts.txt', 'r+');
-        // fwrite($overWriteHeadersPresentInFile, implode(',', $headers));
-        // fclose($overWriteHeadersPresentInFile);
-        /*
-        * Headers END
-        */
-
-        /*
-        * Grab max id already saved in file and increment by 1
-        */
-        $getMaxIdFromFile = fopen(dirname(__DIR__) . '/Models/donuts.txt', 'a+');
-        fgets($getMaxIdFromFile); //skip first line
-        $maxId = 0;
-        while(!feof($getMaxIdFromFile)) {
-            $row = explode(",", fgets($getMaxIdFromFile));
-            $maxId = (int)$row[0] + 1; //this is the max Id returned from the file incremented by one
-          }
-          fclose($getMaxIdFromFile);
-        /*
-        * Grab max id already saved in file and increment by 1
-        */
-        if($maxId == 0) {
-          $maxId = 1;
-        }
-        $_POST["id"] = $maxId;
-
-        /*
-        *
-        *finally write the posted result to file
-        */
-
-          $saveDataToFile = fopen(dirname(__DIR__) . '/Models/donuts.txt', 'a+');
-        //   fgets($saveDataToFile); //skip first line
-          fwrite($saveDataToFile, "\n");
-          fwrite($saveDataToFile, implode(',', $_POST));
-          fclose($saveDataToFile);
-        /*
-        *
-        *finally write the posted result to file
-        */
-        
-        View::renderTemplate('Donuts/addNew.html', ['added'=>true]);
+        // var_dump(base64_encode($donuts));
+        // $donuts["image"] = "<img src=\"data:image\/jpeg;base64,\'.base64_encode(\$donut[\'name\']).\'\" height=\"200\" width=\"200\" class=\"img-thumnail\" /> ";
+        // $donuts["image"] = "data:image/jpeg;base64,'.base64_encode($donuts['image'] ).'";
+        View::renderTemplate('Home/index.html', ['donuts' => $donuts]);
     }
 
-    public function addNewAction()
+    public function ordersAction()
     {
-        View::renderTemplate('Donuts/addNew.html');
-    }
-    public function editAction()
-    {
-        echo 'Hello from the edit action in the Donuts controller!';
-        echo '<p>Route Parameters: <pre>' . 
-                htmlspecialchars(print_r($this->route_params,true)) . '</pre></p>';
+        View::renderTemplate('Donuts/orders.html');
+        // echo 'Welcome to the customers orders placed view.';
     }
 }

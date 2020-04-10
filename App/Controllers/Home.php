@@ -9,8 +9,7 @@ class Home extends \Core\Controller
 {
     public function indexAction()
     {
-        $donuts = Donut::getAll();
-        
+        $donuts = Donut::getDonutsOfTheWeek();
         View::renderTemplate('Home/index.html', ['donuts' => $donuts]);
     }
 }

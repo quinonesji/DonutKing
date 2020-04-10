@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Add a Donut{% endblock %}
+
+
+{% block body %}
+<h1>Edit {{ donut.name }} Donut</h1>
+
+{% if added=="success" %}
+  <div class="alert alert-success" role="alert">
+    Donut saved successfully.
+  </div>
+{% endif %}
+{% if added=="fail" %}
+  <div class="alert alert-danger" role="alert">
+    Error occurred.
+  </div>
+{% endif %}
+{% if file %}
+  <div class="alert alert-danger" role="alert">
+    {{file}}
+  </div>
+{% endif %}
+
+<form action="/admin/update" method="POST" enctype="multipart/form-data" autocomplete="off">
+    <input type="hidden" name="id" value="{{donut.id}}">
+<div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{donut.name}}" placeholder="Donut Name" >
+    {% if error.name %}
+        <p class="error">Name field is required.</p>
+    {% endif %}
+    </div>
+    <div class="form-group">
+    <label for="price">Price</label>
+    <input type="text" class="form-control" id="price" name="price" value="{{donut.price}}" placeholder="Price" >
+    {% if error.price %}
+        <p class="error">Price field is required.</p>
+    {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="shortDescription">Short Description</label>
+        <input type="text" class="form-control" id="shortDescription" name="shortDescription" value="{{donut.shortDescription}}" placeholder="Short Description" >
+        {% if error.shortDescription %}
+            <p class="error">Short Description field is required.</p>
+        {% endif %}
+    </div>
+    <div class="checkbox">
+    <label>
+        {% if donut.isDonutOfTheWeek %}
+            <input type="checkbox" name="isDonutOfTheWeek" checked> Is Donut of Week?
+        {% endif %}
+        {% if not donut.isDonutOfTheWeek %}
+            <input type="checkbox" name="isDonutOfTheWeek"> Is Donut of Week?
+        {% endif %}
+    </label>
+    </div>
+    <div class="form-group">
+        <label for="longDescription">Long Description</label>
+        <textarea name="longDescription" value="{{donut.longDescription}}" id="longDescription" class="form-control" cols="30" rows="10"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="image">Upload Photo of Donut (max size is 1000000 MB)</label>
+        <input type="file" id="image" name="image">
+    </div>
+    <button type="submit" class="btn btn-default">Save</button>
+    <a href="/admin/donuts" class="btn btn-primary">Back</a>
+</form>
+
+{% endblock %}
+    

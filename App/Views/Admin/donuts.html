@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Donuts{% endblock %}
+
+{% block body %}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                Price
+            </td>
+            <!-- <td>
+                Short Description
+            </td>
+            <td>Long Description</td> -->
+            <!-- <td>Is Donut of the Week?</td> -->
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for donut in donuts %}
+            <tr>
+                <td>{{donut.name}}</td>
+                <td>${{donut.price}}</td>
+                <!-- <td>{{donut.shortDescription}}</td>
+                <td>{{donut.longDescription}}</td> -->
+                <!-- <td>
+                    {% if donut.isDonutOfTheWeek %}
+                        <input type="checkbox" checked >
+                    {% else %}
+                        <input type="checkbox" checked >
+                    {% endif %}
+                </td> -->
+                <td><a href="/admin/{{donut.id}}/edit" class="btn btn-primary">Edit</a> | <a href="/admin/{{donut.id}}/delete" class="btn btn-danger">Delete</a> </td>
+            </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+{% endblock %}

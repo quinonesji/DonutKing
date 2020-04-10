@@ -8,17 +8,18 @@
         {% for donut in donuts %}
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
-                    <img src="/images/AppleCideDoughnuts.jpg" alt="Apple cider donut">
+                    <img src="/images/AppleCideDoughnuts.jpg" alt="Apple cider donut" class="img-thumbnail">
                     <div class="caption">
                         <h3 class="pull-right">${{donut.price}}</h3>
-                        <h3>
-                            <a href="/donuts/{{donut.id}}/view">{{donut.name}}</a>
-                        </h3>
+                        <h2>
+                            {{donut.name}}
+                        </h2>
                         <p>{{donut.shortDescription}}</p>
                     </div>
                     <div class="addToCart">
-                        <p class="button">
+                        <p class="button">    
                             <a href="/shopping/{{donut.id}}/addToCart" class="btn btn-primary">Add to Cart</a>
+                            <input type="number" value="1" min="0" name="quantity" class="form-control" style="width: 30%;float: right;" placeholder="Qty">
                         </p>
                     </div>
                 </div>
